@@ -32,5 +32,13 @@ All the necessary code to train the retrieval models are located in the folder '
 To train retrieval models, run the following command:
 
 ```diff
-python python metric_learning/train.py --aerial_path <PATH_TO_AERIAL_IMAGES_DATASET> --ground_path <PATH_TO_GROUND_IMAGES_DATASET> --output <PATH_TO_FOLDER_THAT_RESULTS_WILL_BE_SAVED> --epochs <TOTAL_EPOCHS>
+python metric_learning/train.py --aerial_path <PATH_TO_AERIAL_IMAGES_DATASET> --ground_path <PATH_TO_GROUND_IMAGES_DATASET> --output <PATH_TO_FOLDER_THAT_RESULTS_WILL_BE_SAVED> --epochs <TOTAL_EPOCHS>
 ```
+
+To get the best models using the traning log, run the following command:
+
+```diff
+python metric_learning/select_best_model_from_log.py --log_path <PATH_TO_TRAIN_LOG_FILE>
+```
+
+To 
