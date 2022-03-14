@@ -18,7 +18,7 @@ The architecture of the network integrated into this framework can be checked be
 Before running any step it is necessary to install all the requirements listed in 'requirements.txt'.
 
 ### Image Classification
-All the necessary code to train the classification models are located in the folder 'classification'. 
+All the necessary codes to train the classification models are located in the folder 'classification'. 
 
 To train classification models, run the following command:
 
@@ -27,7 +27,7 @@ python classification/train.py --dataset_path <PATH_TO_DATASET_FOLDER> --output_
 ```
 
 ### Retrieval
-All the necessary code to train the retrieval models are located in the folder 'metric_learning'.
+All the necessary codes to train the retrieval models are located in the folder 'metric_learning'.
 
 To train retrieval models, run the following command:
 
@@ -35,10 +35,59 @@ To train retrieval models, run the following command:
 python metric_learning/train.py --aerial_path <PATH_TO_AERIAL_IMAGES_DATASET> --ground_path <PATH_TO_GROUND_IMAGES_DATASET> --output <PATH_TO_FOLDER_THAT_RESULTS_WILL_BE_SAVED> --epochs <TOTAL_EPOCHS>
 ```
 
-To get the best models using the traning log, run the following command:
+To get the best models using the training log, run the following command:
 
 ```diff
 python metric_learning/select_best_model_from_log.py --log_path <PATH_TO_TRAIN_LOG_FILE>
 ```
 
-To 
+To generate metric results, get the classification lists (necessary to perform missing data classification), distance matrices, and the (aerial and ground) descriptors, run the following code:
+
+```diff
+python metric_learning/test.py --aerial_path <PATH_TO_AERIAL_IMAGES_DATASET> --ground_path <PATH_TO_GROUND_IMAGES_DATASET> --output <PATH_TO_FOLDER_THAT_RESULTS_WILL_BE_SAVED> --model_path <PATH_TO_MODEL_FILE_THAT_WILL_BE_USED>
+```
+
+### Missing Data Classification
+All the necessary codes to run classification with missing data are located in the folder 'missing_data_classification'.
+After training the classification and retrieval models. Assuming that you already have the classification lists (last step detailed in Retrieval section), you can perform missing data classification running the following command:
+
+```diff
+python missing_data_classification/predict.py --aerial_model <PATH_TO_AERIAL_CLASSIFICATION_MODEL> --ground_model <PATH_TO_GROUND_CLASSIFICATION_MODEL> --aerial_data_path <PATH_TO_AERIAL_IMAGES_DATASET> --ground_data_path <PATH_TO_GROUND_IMAGES_DATASET> --ranking_file_path <PATH_TO_RANKING_FILE> --output_path <PATH_TO_FOLDER_THAT_RESULTS_WILL_BE_SAVED> --query_type <[ground/aerial]> --ranking <RANKING_SIZE> --net_type <CHOOSE_BETWEEN:[resnet,vgg,densenet,alexnet,squeezenet,inception,seresnet,sknet]>
+```
+
+### Important Notes
+**If you use a different dataset repository structure, it may be necessary to edit some codes (specially dataloaders) before running.**
+
+## Datasets
+Both AiRound and CV-BrCT datasets can be downloaded [here.](http://www.patreo.dcc.ufmg.br/multi-view-datasets/)
+In order to reproduce or results or use them as a baseline comparison, please use our proposed 5-fold cross-validation. [LEMBRAR DE COLOCAR UM LINK PARA DOWNLOAD.]
+
+
+## Doubts and Credits
+
+In case of any doubts, please e-mail us:
+
+       Gabriel L. S. Machado - gabriel.lucas@dcc.ufmg.br
+       
+       Keiller Nogueira - keiller.nogueira@stir.ac.uk
+
+       Matheus B. Pereira - matheuspereira@dcc.ufmg.br
+
+       Jefersson A. dos Santos - jefersson@dcc.ufmg.br
+
+
+If you have interest in other works of our laboratory, please visit our website:
+
+http://www.patreo.dcc.ufmg.br/
+
+Please cite us
+
+        @article{machado2020airound,
+                title={AiRound and CV-BrCT: Novel multiview datasets for scene classification},
+                author={Machado, Gabriel and Ferreira, Edemir and Nogueira, Keiller and Oliveira, Hugo and Brito, Matheus and Gama, Pedro Henrique Targino and dos Santos, Jefersson Alex},
+                journal={IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
+                volume={14},
+                pages={488--503},
+                year={2020},
+                publisher={IEEE}
+        }
