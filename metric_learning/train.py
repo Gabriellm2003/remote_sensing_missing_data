@@ -83,8 +83,7 @@ def main():
                         help='Path to output folder.')
     parser.add_argument('--epochs', type=int, required=True,
                         help='Number of epochs.')
-    parser.add_argument('--initial_model_path', type=str, required=True,
-                        help='Path to initial pre-trained model.')
+    
 
     
     args = parser.parse_args()
@@ -93,7 +92,6 @@ def main():
     output_path = args.output
     epochs = args.epochs
     batch = len(os.listdir(os.path.join(aerial_path, 'train')))
-    initial_model_path = args.initial_model_path
     learning_rate = 1e-5
 
     if (not os.path.exists(output_path)):
