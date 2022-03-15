@@ -34,6 +34,7 @@ To train retrieval models, run the following command:
 ```diff
 python metric_learning/train.py --aerial_path <PATH_TO_AERIAL_IMAGES_DATASET> --ground_path <PATH_TO_GROUND_IMAGES_DATASET> --output <PATH_TO_FOLDER_THAT_RESULTS_WILL_BE_SAVED> --epochs <TOTAL_EPOCHS>
 ```
+**Note:** You may want to save the terminal logs in order to use the 'select_best_model_from_log.py' script. 
 
 To get the best models using the training log, run the following command:
 
