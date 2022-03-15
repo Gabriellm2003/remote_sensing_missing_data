@@ -156,7 +156,22 @@ def calculate_mAP(distance_matrix, ids_aerial, ids_ground):
         pred_array = extract_ranking(distance_matrix, i, ids_aerial, ids_ground, 'aerial')
         m_ap = mean_average_precision(pred_array)
         print ("TOP " + str(i) + ": " + str(m_ap))
-        
+
+def calculate_mAP_test(distance_matrix, ids_aerial, ids_ground, query, out_file):
+    rankings = range(1,101)
+    mAPs = []
+    
+    if (query == 'ground'):
+    	for i in rankings:
+        	pred_array = extract_ranking(distance_matrix, i, ids_aerial, ids_ground, 'ground')
+        	m_ap = mean_average_precision(pred_array)
+        	mAPs.append(m_ap)
+    else:
+    	for i in rankings:
+        	pred_array = extract_ranking(distance_matrix, i, ids_aerial, ids_ground, 'aerial')
+        	m_ap = mean_average_precision(pred_array)
+        	mAPs.append(m_ap)
+    out_file.write(str(mAPs))
 
 def generate_retrieval_list(dist_array, topK, img_ids, img_ids2, output_file, query):
     
