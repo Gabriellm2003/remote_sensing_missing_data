@@ -40,25 +40,33 @@ def test(model, dataloader, batch, output_path, query_type):
         test_i += y_a.shape[0]
 
     distances = 2 - 2 * np.matmul(grd_global_matrix, np.transpose(sat_global_matrix))
-    stat.calculate_mAP(distances, ids_global_matrix, ids_global_matrix2)
+    if (not os.path.exists(output_path)):
+        os.makedirs(output_path)
+    
+    f0 = open(os.path.join(output_path, query_type + '_maps.txt'), 'w')
+    stat.calculate_mAP_test(distances, ids_global_matrix, ids_global_matrix2, query_type, f0)
 
     #saving inference results
     np.save(os.path.join(output_path, query_type + '_grd_descriptor.npy'), grd_global_matrix)
     np.save(os.path.join(output_path, query_type + '_sat_descriptor.npy'), sat_global_matrix)
     np.save(os.path.join(output_path, query_type + '_ids_matrix.npy'), ids_global_matrix)
     np.save(os.path.join(output_path, query_type + '_ids_matrix2.npy'), ids_global_matrix2)
-
     f1 = open(os.path.join(output_path, query_type + '_list_for_classification.txt'), 'w')
     stat.generate_retrieval_list(distances, 1, ids_global_matrix, ids_global_matrix2, f1, query_type)
-    f2 = open(os.path.join(output_path, query_type + '_list_top5.txt'), 'w')
-    stat.generate_retrieval_list(distances, 5, ids_global_matrix, ids_global_matrix2, f2, query_type)
-    f3 = open(os.path.join(output_path, query_type + '_list_top10.txt'), 'w')
-    stat.generate_retrieval_list(distances, 10, ids_global_matrix, ids_global_matrix2, f3, query_type)
-    f4 = open(os.path.join(output_path, query_type + '_list_top50.txt'), 'w')
-    stat.generate_retrieval_list(distances, 50, ids_global_matrix, ids_global_matrix2, f4, query_type)
-    f5 = open(os.path.join(output_path, query_type + '_list_top100.txt'), 'w')
-    stat.generate_retrieval_list(distances, 100, ids_global_matrix, ids_global_matrix2, f5, query_type)
-
+    f2 = open(os.path.join(output_path, query_type + '_list_top2.txt'), 'w')
+    stat.generate_retrieval_list(distances, 2, ids_global_matrix, ids_global_matrix2, f2, query_type)
+    f3 = open(os.path.join(output_path, query_type + '_list_top3.txt'), 'w')
+    stat.generate_retrieval_list(distances, 3, ids_global_matrix, ids_global_matrix2, f3, query_type)
+    f4 = open(os.path.join(output_path, query_type + '_list_top4.txt'), 'w')
+    stat.generate_retrieval_list(distances, 4, ids_global_matrix, ids_global_matrix2, f4, query_type)
+    f5 = open(os.path.join(output_path, query_type + '_list_top5.txt'), 'w')
+    stat.generate_retrieval_list(distances, 5, ids_global_matrix, ids_global_matrix2, f5, query_type)
+    f10 = open(os.path.join(output_path, query_type + '_list_top10.txt'), 'w')
+    stat.generate_retrieval_list(distances, 10, ids_global_matrix, ids_global_matrix2, f10, query_type)
+    f50 = open(os.path.join(output_path, query_type + '_list_top50.txt'), 'w')
+    stat.generate_retrieval_list(distances, 50, ids_global_matrix, ids_global_matrix2, f50, query_type)
+    f100 = open(os.path.join(output_path, query_type + '_list_top100.txt'), 'w')
+    stat.generate_retrieval_list(distances, 100, ids_global_matrix, ids_global_matrix2, f100, query_type)
 
 
 
