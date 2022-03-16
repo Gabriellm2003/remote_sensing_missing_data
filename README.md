@@ -61,8 +61,19 @@ python missing_data_classification/predict.py --aerial_model <PATH_TO_AERIAL_CLA
 
 ## Datasets
 Both AiRound and CV-BrCT datasets can be downloaded [here.](http://www.patreo.dcc.ufmg.br/multi-view-datasets/)
-In order to reproduce or results or use them as a baseline comparison, please use our proposed 5-fold cross-validation. [LEMBRAR DE COLOCAR UM LINK PARA DOWNLOAD.]
+In order to reproduce or results or use them as a baseline comparison, please use [our proposed 5-fold cross-validation](https://drive.google.com/file/d/1iw6BvM0SamGm9mGjBuYhKfPQvga2GUse/view?usp=sharing). 
 
+**Notes:** 
+1. Folders format: $DatasetName$_$MissingView$_missing_$ViewTypeOfTheImagesInTheFolder$_fold_$FoldNumber$. **Where:**
+   - $DatasetName$ is in [airound, cv-brct]
+   - $MissingView$  is in [aerial, ground]
+   - $ViewTypeOfTheImagesInTheFolder$ is in [aerial, ground]
+   - $FoldNumber$ is in [1, 2, 3, 4, 5]
+2. Inside each dataset fold folder, there are 3-4 folders:
+   - missing test: only exists if the view type of the folder is the one that is missing. It represents the original test set (that is missing by simulation). It was only used to compute the fusion upper bound for the paper.
+   - test: images used in test evaluation.  In the case that the view type of the folder is the one that is missing, it contains the same set of images of the validation.
+   - train: images in the training step.
+   - validation: images in the validation step.
 
 ## Doubts and Credits
 
