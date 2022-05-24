@@ -1,7 +1,7 @@
-# Facing the Void: Overcoming Missing Data in Multi-View Remote Sensing Imagery
+# Facing the Void: Overcoming Missing Data in Multi-View Imagery
 
 ## Overview
-This repository contains code developed for the paper "Facing the Void: Overcoming Missing Data in Multi-View Remote Sensing Imagery". 
+This repository contains code developed for the paper "Facing the Void: Overcoming Missing Data in Multi-View Imagery". 
 
 It contains all the source code of the framework proposed for the paper. It also contains the dataset division proposed for this work, so it can be used as a baseline for future multi-view missing data experiments.
 
