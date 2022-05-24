@@ -92,14 +92,6 @@ If you have interest in other works of our laboratory, please visit our website:
 
 http://www.patreo.dcc.ufmg.br/
 
-Please cite us
+Please check out our paper
 
-        @article{machado2020airound,
-                title={AiRound and CV-BrCT: Novel multiview datasets for scene classification},
-                author={Machado, Gabriel and Ferreira, Edemir and Nogueira, Keiller and Oliveira, Hugo and Brito, Matheus and Gama, Pedro Henrique Targino and dos Santos, Jefersson Alex},
-                journal={IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
-                volume={14},
-                pages={488--503},
-                year={2020},
-                publisher={IEEE}
-        }
+https://arxiv.org/abs/2205.10592
